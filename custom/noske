@@ -63,7 +63,7 @@ server {
     }
 
     location / {
-        proxy_pass                    "https://noske-corpsum.acdh-dev.oeaw.ac.at/";
+        proxy_pass                    "https://noske-corpsum.minerva.arz.oeaw.ac.at/";
         add_header                    X-Cache-Status    $upstream_cache_status;
         proxy_cache                   ts_cache;
         proxy_cache_valid             200 302 1y;
