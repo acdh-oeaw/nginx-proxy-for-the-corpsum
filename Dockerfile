@@ -1,4 +1,4 @@
-FROM nginx:1.16.0-alpine
+FROM nginx:1.21-alpine
 
 # Add and setup entrypoint
 COPY custom /custom
