@@ -109,10 +109,6 @@ jobs:
               kubernetes.io/enable-cors: "true
               kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
               kubernetes.io/cors-allow-credentials: "true"
-              kubernetes.io/configuration-snippet: |
-                              more_set_headers "Access-Control-Allow-Origin: $http_origin";
-
-
           EOF
           if [ '${{ secrets.APP_ROOT }}x' != '/x' ]
           then echo '    nginx.ingress.kubernetes.io/app-root: ${{ secrets.APP_ROOT }}' >> auto-deploy-app-values.yaml
