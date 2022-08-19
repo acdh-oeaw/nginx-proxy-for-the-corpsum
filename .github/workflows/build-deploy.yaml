@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     name: Build Docker image from the branch ${{ github.ref_name }}
+    runs-on: ubuntu-20.04
     environment: ${{ github.ref_name }}
     steps:
       - name: checkout
