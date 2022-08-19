@@ -24,8 +24,8 @@ jobs:
           echo -n "$SECRETS_CONTEXT" | jq -r '[to_entries[]|select(.key|startswith("K8S_SECRET_"))]|map("\(.key|sub("K8S_SECRET_"; ""))=\(.value|tostring|@sh)")|.[]' > secrets.env 
           cat >> Dockerfile <<EOF  
           FROM tmp-cnb-image
-          ENV PORT=5000
-          EXPOSE 5000          
+          ENV PORT=80
+          EXPOSE 80          
           EOF
       - name: login to github container registry
         uses: docker/login-action@v2
