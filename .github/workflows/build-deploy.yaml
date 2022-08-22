@@ -106,8 +106,8 @@ jobs:
               kubernetes.io/auth-realm: "Authentication Required"
               kubernetes.io/auth-type: "basic"
               kubernetes.io/auth-secret: "basic-auth"
-              kubernetes.io/enable-cors: "true
-              kubernetes.io/cors-allow-methods: PUT, GET, POST, OPTIONS
+              kubernetes.io/enable-cors: "true"
+              kubernetes.io/cors-allow-methods: "PUT, GET, POST, OPTIONS"
               kubernetes.io/cors-allow-credentials: "true"
           EOF
           if [ '${{ secrets.APP_ROOT }}x' != '/x' ]
