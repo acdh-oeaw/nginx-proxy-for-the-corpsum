@@ -20,7 +20,7 @@ RUN rm /usr/sbin/nginx* &&\
         nginx-mod-http-headers-more && \
     rm -rf /tmp/* && \
     rm -rf /etc/nginx/conf.d/default.conf && \
-    cp /custom/nginx.conf /etc/nginx/ && \
+    cp /custom/nginx.conf /custom/auth /etc/nginx/ && \
     mkdir -p /etc/nginx/conf.d &&\
     cp /custom/noske /etc/nginx/conf.d/noske.conf && \
     cp /custom/security.conf /etc/nginx/conf.d/security.conf && \
