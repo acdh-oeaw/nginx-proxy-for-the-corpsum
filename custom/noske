@@ -62,9 +62,14 @@ server {
     }
 
     location / {
+      more_set_headers "Content: application/json";
+      return 200 "{\"status\": \"200\", \"message\": \"ok\"}";
+    }
+
+    location /run.cgi {
         auth_basic                    "noske-corpsum";
         auth_basic_user_file          "/etc/nginx/auth";
-        proxy_pass                    "http://noske-corpsum.minerva.arz.oeaw.ac.at/";
+        proxy_pass                    "${PROXY_FOR}/run.cgi";
         add_header                    X-Cache-Status    $upstream_cache_status;
         proxy_cache                   ts_cache;
         proxy_cache_valid             200 302 1y;
