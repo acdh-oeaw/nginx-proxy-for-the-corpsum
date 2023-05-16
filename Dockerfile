@@ -1,10 +1,12 @@
-FROM nginx:1.21-alpine
+FROM nginx:stable-alpine-slim
 
 # Add and setup entrypoint
 COPY custom /custom
 
 # Remove default configuration and add our custom Nginx configuration files
-RUN apk add --no-cache \
+RUN rm /usr/sbin/nginx* &&\
+    apk del nginx &&\
+    apk add --no-cache \
         links \
         vim \
         nano \
@@ -13,9 +15,13 @@ RUN apk add --no-cache \
         coreutils \
         tini \
         curl \
-        shadow && \
+        shadow \
+        nginx \
+        nginx-mod-http-headers-more && \
     rm -rf /tmp/* && \
-    rm /etc/nginx/conf.d/default.conf && \
+    rm -rf /etc/nginx/conf.d/default.conf && \
+    cp /custom/nginx.conf /etc/nginx/ && \
+    mkdir -p /etc/nginx/conf.d &&\
     cp /custom/noske /etc/nginx/conf.d/noske.conf && \
     cp /custom/security.conf /etc/nginx/conf.d/security.conf && \
     rm -fR /custom && \
