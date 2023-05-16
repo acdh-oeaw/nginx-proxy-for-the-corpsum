@@ -60,7 +60,7 @@ jobs:
       submodules: ${{ needs.setup_workflow_env.outputs.submodules }}
   _3:
     needs: [setup_workflow_env, _1]
-    uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy-cluster-2.yml@main
+    uses: acdh-oeaw/gl-autodevops-minimal-port/.github/workflows/deploy.yml@main
     secrets: inherit
 # if you run this outside of acdh-oeaw yo uneed to specify every secret you want to pass by name
 #      KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
