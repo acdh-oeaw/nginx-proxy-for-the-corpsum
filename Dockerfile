@@ -29,7 +29,7 @@ RUN rm /usr/sbin/nginx* &&\
     cp /custom/nginx.conf /custom/auth /etc/nginx/ && \
     mkdir -p /etc/nginx/conf.d &&\
     cp /custom/noske /etc/nginx/noske.conf.template && \
-    envsubst \$PROXY_FOR \$ALLOW_ORIGIN < /custom/noske > /etc/nginx/conf.d/noske.conf && \
+    envsubst '$PROXY_FOR $ALLOW_ORIGIN' < /custom/noske > /etc/nginx/conf.d/noske.conf && \
     cp /custom/security.conf /etc/nginx/conf.d/security.conf && \
     rm -fR /custom && \
     mkdir -p /var/cache/nginx/ts_cache && \
