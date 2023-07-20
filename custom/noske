@@ -7,7 +7,7 @@ proxy_cache_path /var/cache/nginx/ts_cache
 
 map $http_origin $allow_origin {
   default "*";
-  "~^https?://(corpsum\.acdh-dev\.oeaw\.ac\.at|localhost:3000)$" "$http_origin";
+  "${ALLOW_ORIGIN}" "$http_origin";
 }
 
 map $request_method $cors_method {

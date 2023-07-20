@@ -4,6 +4,7 @@ FROM nginx:stable-alpine-slim
 COPY custom /custom
 
 ENV PROXY_FOR https://demo-amc.acdh.oeaw.ac.at/bonito/
+ENV ALLOW_ORIGIN ~^https?://(corpsum\.acdh-dev\.oeaw\.ac\.at|localhost:3000)$
 
 # Remove default configuration and add our custom Nginx configuration files
 RUN rm /usr/sbin/nginx* &&\
@@ -28,7 +29,7 @@ RUN rm /usr/sbin/nginx* &&\
     cp /custom/nginx.conf /custom/auth /etc/nginx/ && \
     mkdir -p /etc/nginx/conf.d &&\
     cp /custom/noske /etc/nginx/noske.conf.template && \
-    envsubst \$PROXY_FOR < /custom/noske > /etc/nginx/conf.d/noske.conf && \
+    envsubst \$PROXY_FOR \$ALLOW_ORIGIN < /custom/noske > /etc/nginx/conf.d/noske.conf && \
     cp /custom/security.conf /etc/nginx/conf.d/security.conf && \
     rm -fR /custom && \
     mkdir -p /var/cache/nginx/ts_cache && \
