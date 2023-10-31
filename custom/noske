@@ -80,7 +80,8 @@ server {
         proxy_cache_lock              on;
         proxy_cache_key               "$scheme$proxy_host$uri$is_args$args$request_body";
         proxy_read_timeout            600s;
-        proxy_ignore_headers          Set-Cookie;            
+        proxy_ignore_headers          Set-Cookie;
+        proxy_pass_header             Authorization;        
     }
 
     location /search {
@@ -97,7 +98,8 @@ server {
         proxy_cache_lock              on;
         proxy_cache_key               "$scheme$proxy_host$uri$is_args$args$request_body";
         proxy_read_timeout            600s;
-        proxy_ignore_headers          Set-Cookie;            
+        proxy_ignore_headers          Set-Cookie;
+        proxy_pass_header             Authorization;        
     }
 
     gzip on;
