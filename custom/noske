@@ -81,7 +81,7 @@ server {
         proxy_cache_key               "$scheme$proxy_host$uri$is_args$args$request_body";
         proxy_read_timeout            600s;
         proxy_ignore_headers          Set-Cookie;
-        proxy_pass_header             Authorization;        
+        proxy_set_header              x-username $remote_user;        
     }
 
     location /search {
@@ -99,7 +99,43 @@ server {
         proxy_cache_key               "$scheme$proxy_host$uri$is_args$args$request_body";
         proxy_read_timeout            600s;
         proxy_ignore_headers          Set-Cookie;
-        proxy_pass_header             Authorization;        
+        proxy_set_header              x-username $remote_user;       
+    }
+
+    location /test/bonito/run.cgi {
+        auth_basic                    "noske-corpsum";
+        auth_basic_user_file          "/etc/nginx/auth";
+        proxy_pass                    "${PROXY_FOR}/../test/bonito/run.cgi";
+        add_header                    X-Cache-Status    $upstream_cache_status;
+        proxy_cache                   ts_cache;
+        proxy_cache_valid             200 302 1y;
+        proxy_cache_valid             404 1m;
+        proxy_cache_methods           GET HEAD POST;
+        proxy_ignore_headers          Cache-Control;
+        proxy_cache_background_update on;
+        proxy_cache_lock              on;
+        proxy_cache_key               "$scheme$proxy_host$uri$is_args$args$request_body";
+        proxy_read_timeout            600s;
+        proxy_ignore_headers          Set-Cookie;
+        proxy_set_header              x-username $remote_user;       
+    }
+
+    location /crystal {
+        auth_basic                    "noske-corpsum";
+        auth_basic_user_file          "/etc/nginx/auth";
+        proxy_pass                    "${PROXY_FOR}/../crystal";
+        add_header                    X-Cache-Status    $upstream_cache_status;
+        proxy_cache                   ts_cache;
+        proxy_cache_valid             200 302 1y;
+        proxy_cache_valid             404 1m;
+        proxy_cache_methods           GET HEAD POST;
+        proxy_ignore_headers          Cache-Control;
+        proxy_cache_background_update on;
+        proxy_cache_lock              on;
+        proxy_cache_key               "$scheme$proxy_host$uri$is_args$args$request_body";
+        proxy_read_timeout            600s;
+        proxy_ignore_headers          Set-Cookie;
+        proxy_set_header              x-username $remote_user;        
     }
 
     gzip on;
