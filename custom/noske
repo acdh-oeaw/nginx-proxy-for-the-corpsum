@@ -78,7 +78,7 @@ server {
         proxy_ignore_headers          Cache-Control;
         proxy_cache_background_update on;
         proxy_cache_lock              on;
-        proxy_cache_key               "$scheme$proxy_host$uri$is_args$args$request_body";
+        proxy_cache_key               "$remote_user$scheme$proxy_host$uri$is_args$args$request_body";
         proxy_read_timeout            600s;
         proxy_ignore_headers          Set-Cookie;
         proxy_set_header              x-username $remote_user;
@@ -97,7 +97,7 @@ server {
         proxy_ignore_headers          Cache-Control;
         proxy_cache_background_update on;
         proxy_cache_lock              on;
-        proxy_cache_key               "$scheme$proxy_host$uri$is_args$args$request_body";
+        proxy_cache_key               "$remote_user$scheme$proxy_host$uri$is_args$args$request_body";
         proxy_read_timeout            600s;
         proxy_ignore_headers          Set-Cookie;
         proxy_set_header              x-username $remote_user;
@@ -116,7 +116,7 @@ server {
         proxy_ignore_headers          Cache-Control;
         proxy_cache_background_update on;
         proxy_cache_lock              on;
-        proxy_cache_key               "$scheme$proxy_host$uri$is_args$args$request_body";
+        proxy_cache_key               "$remote_user$scheme$proxy_host$uri$is_args$args$request_body";
         proxy_read_timeout            600s;
         proxy_ignore_headers          Set-Cookie;
         proxy_set_header              x-username $remote_user;
@@ -135,7 +135,7 @@ server {
         proxy_ignore_headers          Cache-Control;
         proxy_cache_background_update on;
         proxy_cache_lock              on;
-        proxy_cache_key               "$scheme$proxy_host$uri$is_args$args$request_body";
+        proxy_cache_key               "$remote_user$scheme$proxy_host$uri$is_args$args$request_body";
         proxy_read_timeout            600s;
         proxy_ignore_headers          Set-Cookie;
         proxy_set_header              x-username $remote_user;
