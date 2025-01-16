@@ -76,6 +76,24 @@ server {
         proxy_read_timeout            600s;
         proxy_ignore_headers          Set-Cookie;
     }
+    
+    ## avoid caching for /corp_info and /corpora 
+    location ~* ^/(search/corp_info|ca/api/corpora) {
+        proxy_no_cache 1;
+        proxy_cache_bypass 1;
+        proxy_pass                    "http://review-noske4corp-tdgdyy-auto-deploy.amc-noske:8080/";
+        add_header                    X-Cache-Status    $upstream_cache_status;
+        proxy_cache                   ts_cache;
+        proxy_cache_valid             200 302 1y;
+        proxy_cache_valid             404 1m;
+        proxy_cache_methods           GET HEAD POST;
+        proxy_ignore_headers          Cache-Control;
+        proxy_cache_background_update on;
+        proxy_cache_lock              on;
+        proxy_cache_key               "$scheme$proxy_host$uri$is_args$args$request_body";
+        proxy_read_timeout            600s;
+        proxy_ignore_headers          Set-Cookie;
+    }
 
     gzip on;
     gzip_static on;
