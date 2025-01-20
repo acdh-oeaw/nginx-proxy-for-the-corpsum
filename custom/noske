@@ -104,19 +104,19 @@ server {
         proxy_set_header              remote-user $remote_user;       
     }
 
-    ## turn off caching for /ca/api/corpora
-    location /search/corp_info {
-    	proxy_cache                   off;
-        auth_basic                    "noske-corpsum";
-        auth_basic_user_file          "/etc/nginx/auth";
-        proxy_pass                    "${PROXY_FOR}/run.cgi";
-        add_header                    X-Cache-Status    $upstream_cache_status;
-        proxy_ignore_headers          Cache-Control;
-        proxy_read_timeout            600s;
-        proxy_ignore_headers          Set-Cookie;
-        proxy_set_header              x-username $remote_user;
-        proxy_set_header              remote-user $remote_user; 
-    }     
+#    ## turn off caching for /search/corp_info
+#    location /search/corp_info {
+#    	proxy_cache                   off;
+#        auth_basic                    "noske-corpsum";
+#        auth_basic_user_file          "/etc/nginx/auth";
+#        proxy_pass                    "${PROXY_FOR}/run.cgi";
+#        add_header                    X-Cache-Status    $upstream_cache_status;
+#        proxy_ignore_headers          Cache-Control;
+#        proxy_read_timeout            600s;
+#        proxy_ignore_headers          Set-Cookie;
+#        proxy_set_header              x-username $remote_user;
+#        proxy_set_header              remote-user $remote_user; 
+#    }     
 
     location /ca/api {
         auth_basic                    "noske-corpsum";
