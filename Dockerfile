@@ -3,8 +3,8 @@ FROM nginx:stable-alpine-slim
 # Add and setup entrypoint
 COPY custom /custom
 
-ENV PROXY_FOR https://demo-amc.acdh.oeaw.ac.at/bonito/
-ENV ALLOW_ORIGIN ~^https?://(corpsum\.acdh-dev\.oeaw\.ac\.at|localhost:3000)$
+ENV PROXY_FOR=https://demo-amc.acdh.oeaw.ac.at/bonito/ \
+    ALLOW_ORIGIN=~^https?://(corpsum\.acdh-dev\.oeaw\.ac\.at|localhost:3000)$
 
 # Remove default configuration and add our custom Nginx configuration files
 RUN rm /usr/sbin/nginx* &&\
