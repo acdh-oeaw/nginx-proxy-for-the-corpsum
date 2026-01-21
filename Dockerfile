@@ -35,7 +35,5 @@ RUN rm /usr/sbin/nginx* &&\
     mkdir -p /var/cache/nginx/ts_cache && \
     chown -R nginx:nginx /etc/nginx/conf.d /var/cache/nginx /var/run
 
-#@INJECT_USER@
-
 #Healthcheck to make sure container is ready
 HEALTHCHECK CMD curl --fail http://localhost || exit 1
